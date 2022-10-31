@@ -24,9 +24,7 @@
 
 #define __LIBELF_INTERNAL__ 1
 
-#if HAVE_CONFIG_H
 # include "libelf_config.h"
-#endif /* HAVE_CONFIG_H */
 
 /*
  * Workaround for GLIBC bug:
@@ -53,10 +51,10 @@ extern void *memcpy(), *memmove(), *memset();
 #if HAVE_UNISTD_H
 # include <unistd.h>
 #else /* HAVE_UNISTD_H */
-extern int read(), write(), close();
-extern off_t lseek();
+//extern int read(), write(), close();
+//extern off_t lseek();
 #if HAVE_FTRUNCATE
-extern int ftruncate();
+//extern int ftruncate();
 #endif /* HAVE_FTRUNCATE */
 #endif /* HAVE_UNISTD_H */
 #endif /* defined(_WIN32) */

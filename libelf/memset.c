@@ -17,9 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-#if HAVE_CONFIG_H
 # include "libelf_config.h"
-#endif /* HAVE_CONFIG_H */
 
 #ifndef lint
 static const char rcsid[] = "@(#) $Id: memset.c,v 1.11 2008/05/23 08:15:35 michael Exp $";

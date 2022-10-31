@@ -18,6 +18,7 @@
  */
 
 #include <private.h>
+#include <stdlib.h>
 
 #ifndef lint
 static const char rcsid[] = "@(#) $Id: version.c,v 1.8 2008/05/23 08:15:35 michael Exp $";
@@ -25,20 +26,20 @@ static const char rcsid[] = "@(#) $Id: version.c,v 1.8 2008/05/23 08:15:35 micha
 
 unsigned
 elf_version(unsigned ver) {
-    const char *s;
-    unsigned tmp;
+  const char *s;
+  unsigned tmp;
 
-    if ((s = getenv("LIBELF_SANITY_CHECKS"))) {
-	_elf_sanity_checks = (int)strtol(s, (char**)NULL, 0);
-    }
-    if (ver == EV_NONE) {
-	return EV_CURRENT;
-    }
-    if (!valid_version(ver)) {
-	seterr(ERROR_UNKNOWN_VERSION);
-	return EV_NONE;
-    }
-    tmp = _elf_version == EV_NONE ? EV_CURRENT : _elf_version;
-    _elf_version = ver;
-    return tmp;
+  if ((s = getenv("LIBELF_SANITY_CHECKS"))) {
+    _elf_sanity_checks = (int)strtol(s, (char**)NULL, 0);
+  }
+  if (ver == EV_NONE) {
+    return EV_CURRENT;
+  }
+  if (!valid_version(ver)) {
+    seterr(ERROR_UNKNOWN_VERSION);
+    return EV_NONE;
+  }
+  tmp = _elf_version == EV_NONE ? EV_CURRENT : _elf_version;
+  _elf_version = ver;
+  return tmp;
 }

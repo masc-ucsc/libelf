@@ -18,6 +18,7 @@
  */
 
 #include <private.h>
+#include <unistd.h>
 
 #ifndef lint
 static const char rcsid[] = "@(#) $Id: update.c,v 1.34 2009/05/22 17:08:09 michael Exp $";
@@ -885,7 +886,7 @@ _elf64_write(Elf *elf, char *outbuf, size_t len) {
 #endif /* __LIBELF64 */
 
 static int
-xwrite(int fd, char *buffer, size_t len) {
+xwrite(int fd, const char *buffer, size_t len) {
     size_t done = 0;
     size_t n;
 
@@ -935,7 +936,7 @@ _elf_output(Elf *elf, int fd, size_t len, off_t (*_elf_write)(Elf*, char*, size_
 	    return -1;
 	}
     }
-    buf = (void*)mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    buf = (char *)mmap(NULL, len, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (buf != (char*)-1) {
 	if ((char)_elf_fill && !(elf->e_elf_flags & ELF_F_LAYOUT)) {
 	    memset(buf, _elf_fill, len);

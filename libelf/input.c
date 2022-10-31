@@ -54,7 +54,7 @@ xread(int fd, char *buffer, size_t len) {
 
 void*
 _elf_read(Elf *elf, void *buffer, size_t off, size_t len) {
-    void *tmp;
+    char *tmp;
 
     elf_assert(elf);
     elf_assert(elf->e_magic == ELF_MAGIC);

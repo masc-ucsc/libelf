@@ -186,8 +186,7 @@ _elf_nlist(Elf *elf, struct nlist *nl) {
 	table[i].next = 0;
     }
     for (i = 1; i < nsymbols; i++) {
-	name = symbol_name(elf, symdata->d_buf, strdata->d_buf,
-			   strdata->d_size, i);
+	name = symbol_name(elf, (const void *)symdata->d_buf, (const char *)strdata->d_buf, strdata->d_size, i);
 	if (name == NULL) {
 	    free(table);
 	    return -1;

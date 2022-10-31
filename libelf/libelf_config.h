@@ -28,7 +28,7 @@
 /* #undef ENABLE_EXTENDED_FORMAT */
 
 /* Define if you want ELF format sanity checks by default */
-#define ENABLE_SANITY_CHECKS 1
+#undef ENABLE_SANITY_CHECKS 
 
 /* Define if memmove() does not copy overlapping arrays correctly */
 #define HAVE_BROKEN_MEMMOVE 1
@@ -214,3 +214,7 @@
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
+
+// To avoid compile warnings
+#define lint 1
+
