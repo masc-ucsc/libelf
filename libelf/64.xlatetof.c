@@ -390,7 +390,7 @@ _elf64_xltsize(const Elf_Data *src, unsigned dv, unsigned encode, int tof) {
 	seterr(ERROR_UNKNOWN_TYPE);
 	return (size_t)-1;
     }
-    return (*op)(NULL, src->d_buf, src->d_size);
+    return (*op)(NULL, (const unsigned char *)src->d_buf, src->d_size);
 }
 
 /*
@@ -432,7 +432,7 @@ elf64_xlate(Elf_Data *dst, const Elf_Data *src, unsigned encode, int tof) {
 	seterr(ERROR_UNKNOWN_TYPE);
 	return NULL;
     }
-    dsize = (*op)(NULL, src->d_buf, src->d_size);
+    dsize = (*op)(NULL, (const unsigned char *)src->d_buf, src->d_size);
     if (dsize == (size_t)-1) {
 	return NULL;
     }
@@ -441,7 +441,7 @@ elf64_xlate(Elf_Data *dst, const Elf_Data *src, unsigned encode, int tof) {
 	return NULL;
     }
     if (dsize) {
-	tmp = (*op)(dst->d_buf, src->d_buf, src->d_size);
+	tmp = (*op)((unsigned char *)dst->d_buf, (const unsigned char *)src->d_buf, src->d_size);
 	if (tmp == (size_t)-1) {
 	    return NULL;
 	}

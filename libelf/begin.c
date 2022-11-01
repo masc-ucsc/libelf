@@ -372,12 +372,12 @@ elf_begin(int fd, Elf_Cmd cmd, Elf *ref) {
 	/*
 	 * Using mmap on writable files will interfere with elf_update
 	 */
-	if (!elf->e_writable && (elf->e_data = _elf_mmap(elf))) {
+	if (!elf->e_writable && (elf->e_data = (char *)_elf_mmap(elf))) {
 	    elf->e_unmap_data = 1;
 	}
 	else
 #endif /* HAVE_MMAP */
-	if (!(elf->e_data = _elf_read(elf, NULL, 0, size))) {
+	if (!(elf->e_data = (char *)_elf_read(elf, NULL, 0, size))) {
 	    free(elf);
 	    return NULL;
 	}

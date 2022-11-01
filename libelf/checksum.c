@@ -111,7 +111,7 @@ _elf_csum(Elf *elf) {
 		    seterr(ERROR_NULLBUF);
 		    return 0L;
 		}
-		csum += add_bytes(data->d_buf, data->d_size);
+		csum += add_bytes((unsigned char *)data->d_buf, data->d_size);
 	    }
 	}
     }
